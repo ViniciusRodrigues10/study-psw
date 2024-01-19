@@ -50,3 +50,7 @@ def connect(request):
                 request, constants.ERROR, 'Username ou senha inválidos'
             )
             return redirect('/users/connect')
+        
+def logout(request): 
+    auth.logout(request)
+    return redirect('/users/connect')

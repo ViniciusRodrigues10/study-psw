@@ -114,7 +114,10 @@ def list_challenge(request):
 def challenge(request, id):
     challenge = Challenge.objects.get(id=id)
     if request.method == "GET":
-        return render(request, 'challenge.html', {'challenge': challenge})
+        right = challenge.flashcards.filter(answered=True).filter(right=True).count()
+        errors = challenge.flashcards.filter(answered=True).filter(right=False).count()
+        missing = challenge.flashcards.filter(answered=False).count()
+        return render(request, 'challenge.html', {'challenge': challenge, 'right': right, 'errors': errors, 'missing': missing})
 
 def reply_flashcard(request, id):
     flashcard_challenge = FlashcardChallenge.objects.get(id=id)

@@ -15,10 +15,10 @@
     font-weight: bold;
     cursor: pointer;
 }
-.flashcard-facil{
+.flashcard-easy{
     border-left: 20px solid #1DAB1A;
 }
-.flashcard-medio{
+.flashcard-medium{
     border-left: 20px solid #E8910E;
 }
 .flashcard-dificil{

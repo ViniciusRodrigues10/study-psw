@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Category, Flashcard
+from .models import Category, Flashcard, Challenge, FlashcardChallenge
+from django.http import HttpResponse, Http404
 from django.contrib.messages import constants
 from django.contrib import messages
 
@@ -58,3 +59,74 @@ def delete_flashcard(request, id):
         request, constants.SUCCESS, 'Flashcard deletado com sucesso!'
     )
     return redirect('/flashcard/new_flashcard/')
+
+def start_challenge(request):
+    if request.method == "GET":
+        category = Category.objects.all()
+        return render(request, 'start_challenge.html', {'category': category, 'difficulty': Flashcard.DIFFICULTY_CHOICES})
+    
+    elif request.method == 'POST':
+        title = request.POST.get('title')
+        categories = request.POST.getlist('category')
+        difficulty = request.POST.get('difficulty')
+        qty_questions = request.POST.get('qty_questions')
+
+        challenge = Challenge(
+            user=request.user,
+            title=title,
+            quantity_questions=qty_questions,
+            difficulty=difficulty
+        )
+
+        challenge.save()
+
+        challenge.category.add(*categories)
+
+        flashcard = (
+            Flashcard.objects.filter(user=request.user)
+            .filter(difficulty=difficulty)
+            .filter(category_id__in=categories)
+            .order_by('?')
+        )
+
+        if flashcard.count() <  int(qty_questions):
+            # Tratar mandar menssagem de erro
+            return redirect('/flashcard/start_challenge/')
+
+        flashcard = flashcard[:int(qty_questions)]
+        
+        for f in flashcard:
+            flashcard_challenge = FlashcardChallenge(
+                flashcard=f
+            )
+            flashcard_challenge.save()
+            challenge.flashcards.add(flashcard_challenge)
+        
+        challenge.save()
+
+        return redirect('/flashcard/list_challenge')
+def list_challenge(request):
+    challenges = Challenge.objects.filter(user=request.user)
+    #TODO: develop status
+    #TODO: develop filter
+    return render(request, 'list_challenge.html',{'challenges': challenges})
+
+def challenge(request, id):
+    challenge = Challenge.objects.get(id=id)
+    if request.method == "GET":
+        return render(request, 'challenge.html', {'challenge': challenge})
+
+def reply_flashcard(request, id):
+    flashcard_challenge = FlashcardChallenge.objects.get(id=id)
+    right = request.GET.get('right')
+    challenge_id = request.GET.get('challenge_id')
+
+    if not flashcard_challenge.flashcard.user == request.user:
+        raise Http404()
+
+    flashcard_challenge.answered = True
+
+    flashcard_challenge.right = True if right == "1" else False
+    flashcard_challenge.save()
+
+    return redirect(f'/flashcard/challenge/{challenge_id}')

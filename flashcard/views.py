@@ -113,6 +113,10 @@ def list_challenge(request):
 
 def challenge(request, id):
     challenge = Challenge.objects.get(id=id)
+
+    if not challenge.user == request.user:
+        raise Http404
+    
     if request.method == "GET":
         right = challenge.flashcards.filter(answered=True).filter(right=True).count()
         errors = challenge.flashcards.filter(answered=True).filter(right=False).count()

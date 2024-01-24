@@ -137,3 +137,13 @@ def reply_flashcard(request, id):
     flashcard_challenge.save()
 
     return redirect(f'/flashcard/challenge/{challenge_id}')
+
+def report(request, id):
+    challenge = Challenge.objects.get(id=id)
+
+    hits = challenge.flashcards.filter(right=True).count()
+    errors = challenge.flashcards.filter(right=False).count()
+    
+    data = [hits, errors]
+
+    return render(request, 'report.html', {'challenge': challenge, 'data': data})

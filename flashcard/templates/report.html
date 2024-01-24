@@ -44,7 +44,7 @@
                 labels: ['Acertos', 'Erros'],
                 datasets: [{
                     label: 'Quantidade',
-                    data: {{data}},
+                    data: {{data_pie}},
                     borderWidth: 1
                 }]
             },
@@ -57,10 +57,10 @@
         new Chart(ctx2, {
             type: 'radar',
             data: {
-                labels: ['Matemática', 'Português', 'Programação', 'História'],
+                labels: {{name_categorys|safe}},
                 datasets: [{
                     label: 'Quantidade',
-                    data: [2, 4, 8, 10],
+                    data: {{data_radar}},
                     borderWidth: 1,
                     fill: true,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',

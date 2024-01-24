@@ -143,7 +143,13 @@ def report(request, id):
 
     hits = challenge.flashcards.filter(right=True).count()
     errors = challenge.flashcards.filter(right=False).count()
-    
-    data = [hits, errors]
+    data_pie = [hits, errors]
 
-    return render(request, 'report.html', {'challenge': challenge, 'data': data})
+    categorys = challenge.category.all()
+    name_categorys = [i.nome for i in categorys]
+    data_radar = []
+    for category in categorys:
+        data_radar.append(challenge.flashcards.filter(flashcard__category=category).filter(right=True).count())
+
+
+    return render(request, 'report.html', {'challenge': challenge, 'data_pie': data_pie, 'name_categorys': name_categorys, 'data_radar': data_radar})

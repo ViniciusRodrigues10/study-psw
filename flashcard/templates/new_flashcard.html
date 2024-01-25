@@ -54,7 +54,7 @@
                             </div>
                     </div>
                     <br>
-                    <input type="submit" value="Enviar" class="btn-cadastro">
+                    <input type="submit" value="Enviar" class="btn-registration">
                     <br>
                     <br>
                     <br>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-md">
                         <br>
-                        <input type="submit" style="width: 100%" value="Filtrar" class="btn-cadastro">
+                        <input type="submit" style="width: 100%" value="Filtrar" class="btn-registration">
                     </div>
                 </div>
             </form>
@@ -93,17 +93,17 @@
             {% for flash in flashcards %}
                 <div class="box-new-flashcard" onclick="flip_card({{flash.id}})">
                     <div class="flashcard ">
-                        <div class="flashcard-categoria">
+                        <div class="flashcard-category">
                             {{flash.category}}
                         </div>
-                        <a href="{% url 'delete_flashcard' flash.id %}"><i class='icone-exit bx bx-x-circle'></i></a>
+                        <a href="{% url 'delete_flashcard' flash.id %}"><i class='icon-exit bx bx-x-circle'></i></a>
                         <br>
                         <br>
                         <div class="flashcard-box-item">
                             <p class="flashcard-item">{{flash.question}} ?</p>
                         </div>
                     </div>
-                    <div class="resposta-flashcard" id="{{flash.id}}">
+                    <div class="response-flashcard" id="{{flash.id}}">
                         {{flash.response}}
                     </div>
                 </div>

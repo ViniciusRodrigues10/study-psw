@@ -9,15 +9,15 @@
   background-size: cover;
 }
 
-.titulo-fonte {
+.source-title{
   margin-top: 20px;
 }
 
-.box-titulo {
+.box-title {
   display: flex;
 }
 
-.divisor {
+.divider {
   border: 0;
   height: 1px;
   background-image: linear-gradient(
@@ -72,7 +72,7 @@
   width: 100%;
 }
 
-.btn-cadastro {
+.btn-registration {
   padding: 10px;
   background-color: #58fcd5;
   border: none;

@@ -37,7 +37,7 @@
                         <label>Arquivo</label>
                         <input type="file" name="file" class="form-control">
                         <br>
-                        <input type="submit" class="btn-cadastro" value="Enviar">
+                        <input type="submit" class="btn-registration" value="Enviar">
                     </form>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         {% for book in books %}
                             <tr class="linha">
                                 <td>{{book.title}}</td>
-                                <td><a href="{% url 'book' book.id %}" style="color: black; text-decoration: none;" class="btn-cadastro">Abrir</a></td>
+                                <td><a href="{% url 'book' book.id %}" style="color: black; text-decoration: none;" class="btn-registration">Abrir</a></td>
                             </tr>
                         {% endfor %}
 

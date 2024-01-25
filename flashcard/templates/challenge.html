@@ -30,7 +30,7 @@
                     <div class="box-new-flashcard {% if flash.answered %}op2{% endif %}">
                         <div class="flashcard {{flash.flashcard.css_difficulty}}">
                             
-                            <div class="flashcard-categoria">
+                            <div class="flashcard-category">
                                 {{flash.flashcard.category}}
                             </div>
                             <br>
@@ -52,7 +52,7 @@
                                 {% endif %}
                             {% endif %}
                         </div>
-                        <div class="resposta-flashcard" id="{{flash.id}}">
+                        <div class="response-flashcard" id="{{flash.id}}">
                             {{flash.flashcard.response}}
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                 <p class="fonte-p">Erros: {{errors}}</p>
                 <p class="fonte-p">Faltantes: {{missing}}</p>
                 <br>
-                <a class="btn-cadastro btt-challenge" href="{% url 'report' challenge.id%}">Relatório detalhado</a>
+                <a class="btn-registration btn-challenge" href="{% url 'report' challenge.id%}">Relatório detalhado</a>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@ class Flashcard(models.Model):
         elif self.difficulty == "M":
             return "flashcard-medio"
         elif self.difficulty == "D":
-            return "flashcard-dificil"
+            return "flashcard-hard"
 
 class FlashcardChallenge(models.Model):
     flashcard = models.ForeignKey(Flashcard, on_delete=models.DO_NOTHING)

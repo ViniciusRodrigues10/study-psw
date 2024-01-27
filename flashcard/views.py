@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Flashcard, Challenge, FlashcardChallenge
 from django.http import HttpResponse, Http404
 from django.contrib.messages import constants
 from django.contrib import messages
+from django.db import IntegrityError
 
 # Create your views here.
 def new_flashcard(request): 
@@ -53,11 +54,15 @@ def new_flashcard(request):
         return redirect('/flashcard/new_flashcard')
     
 def delete_flashcard(request, id):
-    flashcard = Flashcard.objects.get(id=id)
-    flashcard.delete()
-    messages.add_message(
-        request, constants.SUCCESS, 'Flashcard deletado com sucesso!'
-    )
+    flashcard = get_object_or_404(Flashcard, id=id)
+
+    try:
+        flashcard.delete()
+        messages.add_message(
+            request, constants.SUCCESS, 'Flashcard deletado com sucesso!'
+        )
+    except IntegrityError:
+        messages.add_message(request, constants.WARNING, 'Este flashcard não pode ser excluído, pois está associado a um desafio.')
     return redirect('/flashcard/new_flashcard/')
 
 def start_challenge(request):
@@ -105,6 +110,7 @@ def start_challenge(request):
         challenge.save()
 
         return redirect('/flashcard/list_challenge')
+    
 def list_challenge(request):
     challenges = Challenge.objects.filter(user=request.user)
     #TODO: develop status

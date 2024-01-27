@@ -21,11 +21,11 @@ class Flashcard(models.Model):
     @property
     def css_difficulty(self):
         if self.difficulty == "F":
-            return "flashcard-facil"
+            return "flashcard-easy"
         elif self.difficulty == "M":
-            return "flashcard-medio"
+            return "flashcard-medium"
         elif self.difficulty == "D":
-            return "flashcard-hard"
+            return "flashcard-dificil"
 
 class FlashcardChallenge(models.Model):
     flashcard = models.ForeignKey(Flashcard, on_delete=models.DO_NOTHING)

@@ -20,7 +20,7 @@
         <br>
         <div class="row">
             <div class="col-md">
-                <h3 class="fonte-secundaria" >Desafio iniciado</h3>
+                <h3 class="main-source" >Desafio iniciado</h3>
                 <span class="badge-category">Programação</span>
                 <span class="badge-category" >Matemática</span>
                 <br>
@@ -61,10 +61,10 @@
                 {% endfor %}
             </div>
                 <div class="col-md">
-                <h3 class="fonte-secundaria">Resultado</h3>
-                <p class="fonte-p">Acertos: {{right}}</p>
-                <p class="fonte-p">Erros: {{errors}}</p>
-                <p class="fonte-p">Faltantes: {{missing}}</p>
+                <h3 class="secondary-source">Resultado</h3>
+                <p class="source-p">Acertos: {{right}}</p>
+                <p class="source-p">Erros: {{errors}}</p>
+                <p class="source-p">Faltantes: {{missing}}</p>
                 <br>
                 <a class="btn-registration btn-challenge" href="{% url 'report' challenge.id%}">Relatório detalhado</a>
             </div>

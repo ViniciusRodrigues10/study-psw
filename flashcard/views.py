@@ -87,10 +87,6 @@ def start_challenge(request):
             difficulty=difficulty
         )
 
-        challenge.save()
-
-        challenge.category.add(*categories)
-
         flashcard = (
             Flashcard.objects.filter(user=request.user)
             .filter(difficulty=difficulty)
@@ -99,8 +95,11 @@ def start_challenge(request):
         )
 
         if flashcard.count() <  int(qty_questions):
-            # Tratar mandar menssagem de erro
             return redirect('/flashcard/start_challenge/')
+        
+        challenge.save()
+
+        challenge.category.add(*categories)
 
         flashcard = flashcard[:int(qty_questions)]
         

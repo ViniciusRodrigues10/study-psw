@@ -56,13 +56,17 @@ def new_flashcard(request):
 def delete_flashcard(request, id):
     flashcard = get_object_or_404(Flashcard, id=id)
 
-    try:
+    try: 
+        if not flashcard.user == request.user:
+            raise Http404
+        
         flashcard.delete()
         messages.add_message(
             request, constants.SUCCESS, 'Flashcard deletado com sucesso!'
         )
     except IntegrityError:
         messages.add_message(request, constants.WARNING, 'Este flashcard não pode ser excluído, pois está associado a um desafio.')
+    
     return redirect('/flashcard/new_flashcard/')
 
 def start_challenge(request):

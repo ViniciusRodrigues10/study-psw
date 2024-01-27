@@ -3,8 +3,8 @@
 
 {% block 'header' %}
     <link href="{% static 'users/css/register.css' %}" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="{% static 'flashcard/css/new_flashcard.css'%}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
 
 {% endblock 'header' %}
 
@@ -92,7 +92,8 @@
             <br>
             {% for flash in flashcards %}
                 <div class="box-new-flashcard" onclick="flip_card({{flash.id}})">
-                    <div class="flashcard ">
+                    <div class="flashcard {{ flash.css_difficulty }}">
+                        
                         <div class="flashcard-category">
                             {{flash.category}}
                         </div>
@@ -105,7 +106,7 @@
                     </div>
                     <div class="response-flashcard" id="{{flash.id}}">
                         {{flash.response}}
-                    </div>
+                    </div> 
                 </div>
                 <br>
                 <br>

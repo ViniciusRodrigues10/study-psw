@@ -95,6 +95,8 @@ def start_challenge(request):
         )
 
         if flashcard.count() <  int(qty_questions):
+            messages.error(request, 'A quantidade de questões solicitadas é maior do que a quantidade disponível no banco de dados.')
+            messages.get_messages(request)
             return redirect('/flashcard/start_challenge/')
         
         challenge.save()

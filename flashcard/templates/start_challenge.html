@@ -5,11 +5,40 @@
     <link href="{% static 'users/css/register.css' %}" rel="stylesheet">
     <link href="{% static 'flashcard/css/new_flashcard.css' %}" rel="stylesheet">
     <link href="{% static 'flashcard/css/start_challenge.css' %}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .swal2-popup {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+        .dark-theme .swal2-title {
+            color: #ffffff;
+        }
+        .dark-theme .swal2-content {
+            color: #ffffff;
+        }
+        .dark-theme .swal2-popup .swal2-header {
+            background-color: #2c3e50;
+        }
+    </style>
 {% endblock 'header' %}
 
 {% block 'content' %}
 
     {% include "partials/header.html" %}
+
+    <script>
+        var messages = "A quantidade de questões solicitadas é maior do que a quantidade disponível no banco de dados.";
+
+        if (messages) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: messages,
+            });
+        }
+    </script>
     
     <div class="container ctx">
         <br>
@@ -43,7 +72,7 @@
                 </select>
             </div>
             <div class="col-md">
-                <label>Qtd questões</label>
+                <label>Quantidade de questões</label>
                 <input type="number" class="form-control" name="qty_questions">
             </div>
         </div>

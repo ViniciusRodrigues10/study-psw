@@ -7,7 +7,7 @@
     <link href="{% static 'flashcard/css/new_flashcard.css' %}" rel="stylesheet">
     <link href="{% static 'flashcard/css/start_challenge.css' %}" rel="stylesheet">
     <link href="{% static 'flashcard/css/challenge.css' %}" rel="stylesheet">
-    <link href="{% static 'books/css/add_books.css' %}" rel="stylesheet">
+    {% comment %} <link href="{% static 'books/css/add_books.css' %}" rel="stylesheet"> {% endcomment %}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 {% endblock 'header' %}
@@ -52,7 +52,7 @@
                     </thead>
                     <tbody>
                         {% for book in books %}
-                            <tr class="linha">
+                            <tr class="line">
                                 <td>{{book.title}}</td>
                                 <td><a href="{% url 'book' book.id %}" style="color: black; text-decoration: none;" class="btn-registration">Abrir</a></td>
                             </tr>

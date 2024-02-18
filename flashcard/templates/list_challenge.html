@@ -22,12 +22,23 @@
                 <div class="col-md">
                     <form action="}" method="GET">
                     <label for="">Categoria</label>
-                    <select name="category" class="form-select">
-                    </select>
+                    <select name="category" id="categoryDropdown" class="form-select">
+                        <option value="">Todas as categorias</option>
+                        {% for category in category %}
+                            <option value="{{ category.id }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>                    
+                    
                 </div>
             <div class="col-md">
                 <label for="">Dificuldade</label>
-                <select name="difficulty" class="form-select">
+                {% comment %} <select name="difficulty" class="form-select">
+                </select> {% endcomment %}
+                <select name="difficulty" id="" class="form-select">
+                    <option value="">Todas as dificuldades</option>
+                    {% for difficulties in difficulties %}
+                        <option value="{{difficulties.0}}">{{difficulties.1}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="col-md">
@@ -61,5 +72,5 @@
             </table>
         </div>
     </div>
-    <script src="{% static 'flashcard/js/flashcard.js' %}"></script>
+    {% comment %} <script src="{% static 'flashcard/js/flashcard.js' %}"></script> {% endcomment %}
 {% endblock 'content' %}

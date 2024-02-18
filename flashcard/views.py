@@ -117,10 +117,21 @@ def start_challenge(request):
         return redirect('/flashcard/list_challenge')
     
 def list_challenge(request):
+    # category = Challenge.objects.filter(category=category)
+    category = Category.objects.all()
     challenges = Challenge.objects.filter(user=request.user)
     #TODO: develop status
     #TODO: develop filter
-    return render(request, 'list_challenge.html',{'challenges': challenges})
+    category_filter = request.GET.get('category')
+    difficulty_filter = request.GET.get('difficulty')
+
+    if category_filter:
+        challenges = challenges.filter(category__id=category_filter)
+
+    if difficulty_filter:
+        challenges = challenges.filter(difficulty=difficulty_filter)
+
+    return render(request, 'list_challenge.html',{'challenges': challenges, 'category': category, 'difficulties': Flashcard.DIFFICULTY_CHOICES})
 
 def challenge(request, id):
     challenge = Challenge.objects.get(id=id)

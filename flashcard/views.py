@@ -117,11 +117,9 @@ def start_challenge(request):
         return redirect('/flashcard/list_challenge')
     
 def list_challenge(request):
-    # category = Challenge.objects.filter(category=category)
     category = Category.objects.all()
     challenges = Challenge.objects.filter(user=request.user)
-    #TODO: develop status
-    #TODO: develop filter
+    
     category_filter = request.GET.get('category')
     difficulty_filter = request.GET.get('difficulty')
 

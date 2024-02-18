@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Book, ViewBook
+from .models import Book, Tags, ViewBook
 from django.contrib.messages import constants
 from django.contrib import messages
 
@@ -21,8 +21,20 @@ def add_books(request):
             title=title,
             file=file
         )
-
         book.save()
+
+        tags = request.POST.get('tags')
+        list_tags = tags.split(',')
+
+        for tag in list_tags:
+            new_tag = Tags(
+                name=tag
+            )
+            new_tag.save()
+            book.tags.add(new_tag)
+        
+        book.save()
+        
         messages.add_message(request, constants.SUCCESS, 'Salvo com sucesso.')
         return redirect('/books/add_books')
     

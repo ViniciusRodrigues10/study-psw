@@ -2,11 +2,7 @@
 
 <h1 align="center">Study Async</h1>
 
-<!--
-<p align="center">O Sistema de votação em tempo real é um projeto backend desenvolvido para facilitar a realização de votações em diferentes contextos, como 
-pesquisas de opinião e decisões em grupos. Utilizando tecnologias modernas, o sistema oferece uma plataforma segura, escalável e de fácil 
-utilização para administradores e participantes.</p>
--->
+<p align="center">Study Async é uma plataforma de aprendizado projetada para oferecer uma experiência personalizada e flexível para estudantes de todas as áreas. Combinando recursos interativos e ferramentas de acompanhamento de desempenho, o Study Async permite que os usuários criem um ambiente de estudo adaptado às suas necessidades individuais.</p>
 
 <br/>
 <br/>
@@ -26,7 +22,7 @@ utilização para administradores e participantes.</p>
 
 ### Status do Projeto
 <h4 align=""> 
-	🚧  Study Async 🚀 Concluido...  🚧
+	🚧  Study Async 🚀 Em andamento...  🚧
 </h4>
 
 <br/>
@@ -43,11 +39,11 @@ utilização para administradores e participantes.</p>
 
 <br/>
 <br/>
-<!--
+
 ### Pré-requisitos e como rodar a aplicação
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Docker](https://docs.docker.com/engine/install/). 
+[Git](https://git-scm.com), [Python](https://www.python.org/downloads/), [Django](https://www.djangoproject.com/). 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 <br/>
@@ -57,19 +53,33 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
-$ git clone <git@github.com:ViniciusRodrigues10/real-time-polls.git>
+$ git clone <git@github.com:ViniciusRodrigues10/study-psw.git>
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd real-time-polls
+$ cd study-psw
 
-# Instale as dependências
-$ npm install
+# Crie um ambiente virtual:
+# Linux
+$ python3 -m venv venv
+# Windows
+$ python -m venv venv
+ 
+# Após a criação do venv você deve ativa-lo:
+# Linux
+$ source venv/bin/activate
+# Windows
+$ venv\Scripts\Activate
+ 
+# Caso algum comando retorne um erro de permissão execute o código e tente novamente:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
-# Rode o docker 
-$ docker compose up -d
+# Instalação do Django e as demais bibliotecas:
+$ pip install django
+$ pip install pillow
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev
+# Rode o servidor para testar:
+$ python manage.py runserver
+
 ```
 
 <br/>
@@ -78,27 +88,23 @@ $ npm run dev
 ### Tecnologias utilizadas
 
 As seguintes ferramentas foram usadas na construção do projeto:
-
-- [Docker](https://www.docker.com/)
-- [Fastify](https://fastify.dev/)
-- [Node: Crypto](https://nodejs.org/api/crypto.html)
-- [Node.js](https://nodejs.org/en/)
-- [PostgresSQL](https://www.postgresql.org/)
+- [Django](https://www.djangoproject.com/)
 - [Prisma](https://www.prisma.io/)
-- [Redis](https://redis.io/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Websocket](https://www.npmjs.com/package/@fastify/websocket)
-
+- [Python](https://www.python.org/)
+- [Sqlite3](https://www.sqlite.org/)
+  
 <br/>
 <br/>
 
 ### Resultado
 
-https://github.com/ViniciusRodrigues10/real-time-polls/assets/76957963/8950f1ff-a48c-4b4d-8072-dc47a6640f46
+
+https://github.com/ViniciusRodrigues10/study-psw/assets/76957963/ef22eef9-9945-411f-84f3-f5e6512bceae
+
 
 <br/>
 <br/>
--->
+
 
 ### Autor
 
